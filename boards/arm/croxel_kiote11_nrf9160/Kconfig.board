@@ -1,0 +1,16 @@
+# Croxel's KIOTE/11 nRF9160 board configuration
+#
+# Copyright (c) 2019 Nordic Semiconductor ASA
+# Copyright (c) 2021 Croxel Inc
+#
+# SPDX-License-Identifier: LicenseRef-Nordic-5-Clause
+
+if SOC_NRF9160_SICA
+
+config BOARD_CROXEL_KIOTE11_NRF9160
+	bool "nRF9160 Croxel's KIOTE/11"
+
+config BOARD_CROXEL_KIOTE11_NRF9160NS
+	bool "nRF9160 Croxel's KIOTE/11 non-secure"
+
+endif # SOC_NRF9160_SICA

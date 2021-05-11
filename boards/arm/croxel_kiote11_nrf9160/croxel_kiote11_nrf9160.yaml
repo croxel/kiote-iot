@@ -1,0 +1,13 @@
+identifier: croxel_kiote11_nrf9160
+name: Croxel-KIOTE/11-NRF9160
+type: mcu
+arch: arm
+toolchain:
+  - gnuarmemb
+  - zephyr
+ram: 64
+flash: 256
+supported:
+  - i2c
+  - pwm
+  - watchdog  
