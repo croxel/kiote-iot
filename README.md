@@ -1,4 +1,4 @@
-# KIOTE IOT NCS repository
+# KIOTE IOT repository
 
 This repository contains files related to Croxel's KIOTE software, developed in Nordic Connect SDK (therefore, based on the Zephyr Project).
 
