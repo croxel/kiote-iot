@@ -1,13 +1,13 @@
 /*
  * Copyright (c) 2019 Nordic Semiconductor ASA
+ * Copyright (c) 2021 Croxel Inc
  *
  * SPDX-License-Identifier: LicenseRef-Nordic-5-Clause
  */
 
 /** @TODO:
- * - Add PIR Motion sensor.
- * - Add Hall-Effect Sensor.
- * - Add Battery Charging State input.
+ * - Add Audio Amplifier.
+ * - Define Expansion Headers.
 */
 
 / {
@@ -45,13 +45,58 @@
 		};
 	};
 
+	pwmleds {
+		compatible = "pwm-leds";
+
+		pwm_led0: pwm_led_0 {
+			pwms = <&pwm0 23>;
+		};
+		pwm_led1: pwm_led_1 {
+			pwms = <&pwm0 24>;
+		};
+		pwm_led2: pwm_led_2 {
+			pwms = <&pwm0 25>;
+		};
+	};
+
+	power_input_st {
+		compatible = "gpio-keys";
+		batt_charging_st: batt_charging_st0 {
+			gpios = <&gpio0 15 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+			label = "Battery charging state";
+		};
+		vbus_present_st: vbus_present_st {
+			gpios = <&gpio0 21 0>;
+			label = "VBUS present state";
+		};
+	};
+
+	discrete_sensors {
+		compatible = "gpio-keys";
+		pir0: pir_0 {
+			gpios = <&gpio0 5 (GPIO_PULL_DOWN | GPIO_ACTIVE_HIGH)>;
+			label = "Digital Passive Infrared sensor";
+		};
+		hall_effect_sensor0: hes_0 {
+			gpios = <&gpio0 26 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+			label = "Digital Hall Effect Sensor";
+		};
+	};
+
 	aliases {
 		sw0 = &button0;
 		led0 = &red_led;
 		led1 = &green_led;
 		led2 = &blue_led;
 		rgb-pwm = &pwm0;
+		pwm-led0 = &pwm_led0;
+		pwm-led1 = &pwm_led1;
+		pwm-led2 = &pwm_led2;
 		buzzer-pwm = &pwm1;
+		batt-charging-st = &batt_charging_st;
+		vbus-present-st = &vbus_present_st;
+		pir = &pir0;
+		hes = &hall_effect_sensor0;
 	};
 };
 
