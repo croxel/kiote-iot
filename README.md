@@ -8,7 +8,7 @@ Luis Ubieda, <luisf@croxel.com>
 
 ## Boards Supported
 
-- TODO: KIOTE/11
+- KIOTE/11
 
 ## Getting Started Guide
 
