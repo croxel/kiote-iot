@@ -13,7 +13,7 @@
 manifest:
   # This west.yml requires west 0.9 or later, because the "submodules"
   # feature used below was introduced then.
-  version: 0.9
+  version: "0.10"
 
   # "remotes" is a list of locations where git repositories are cloned
   # and fetched from.
@@ -34,7 +34,7 @@ manifest:
   projects:
     - name: nrf
       repo-path: sdk-nrf
-      revision: v1.5.1
+      revision: v1.6.0
       path: nrf
       import: true
     - name: kiote-app
