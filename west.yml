@@ -20,9 +20,9 @@ manifest:
   remotes:
     # nRF Connect SDK GitHub organization.
     - name: ncs
-      url-base: https://github.com/nrfconnect'
+      url-base: git@github.com:nrfconnect
     - name: croxel
-      url-base: https://github.com/croxel
+      url-base: git@github.com:croxel
 
   # If not otherwise specified, the projects below should be obtained
   # from the ncs remote.
@@ -40,6 +40,10 @@ manifest:
     - name: kiote-app
       revision: master
       remote: croxel
+    - name: golioth
+      path: modules/lib/golioth
+      revision: main
+      url: git@github.com:golioth/zephyr.git
 
   # West-related configuration for the nrf repository.
   self:
