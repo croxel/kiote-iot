@@ -92,6 +92,9 @@
 		pwm-led0 = &pwm_led0;
 		pwm-led1 = &pwm_led1;
 		pwm-led2 = &pwm_led2;
+		red-pwm-led = &pwm_led0;
+		green-pwm-led = &pwm_led1;
+		blue-pwm-led = &pwm_led2;
 		buzzer-pwm = &pwm1;
 		batt-charging-st = &batt_charging_st;
 		vbus-present-st = &vbus_present_st;

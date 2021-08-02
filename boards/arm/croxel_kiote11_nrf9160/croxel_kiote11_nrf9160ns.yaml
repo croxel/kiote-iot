@@ -1,5 +1,5 @@
 identifier: croxel_kiote11_nrf9160ns
-name: THINGY91-nRF9160-Non-Secure
+name: Croxel-KIOTE/11-nRF9160-Non-Secure
 type: mcu
 arch: arm
 toolchain:
