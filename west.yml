@@ -21,8 +21,6 @@ manifest:
     # nRF Connect SDK GitHub organization.
     - name: ncs
       url-base: git@github.com:nrfconnect
-    - name: croxel
-      url-base: git@github.com:croxel
 
   # If not otherwise specified, the projects below should be obtained
   # from the ncs remote.
