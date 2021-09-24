@@ -35,10 +35,6 @@ manifest:
       revision: v1.6.0
       path: nrf
       import: true
-    - name: golioth
-      path: modules/lib/golioth
-      revision: main
-      url: git@github.com:golioth/zephyr.git
 
   # West-related configuration for the nrf repository.
   self:
