@@ -20,7 +20,7 @@ manifest:
   remotes:
     # nRF Connect SDK GitHub organization.
     - name: ncs
-      url-base: git@github.com:nrfconnect
+      url-base: https://github.com/nrfconnect
 
   # If not otherwise specified, the projects below should be obtained
   # from the ncs remote.
