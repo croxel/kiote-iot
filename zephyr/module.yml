@@ -1,4 +1,5 @@
 build:
+  kconfig: Kconfig.kiote-iot
   settings:
     board_root: .
     dts_root: .

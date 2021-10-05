@@ -1,0 +1,8 @@
+menu "Croxel KIOTE IoT"
+
+# This is a temporary solution to whitelist
+# BOARD_CROXEL_KIOTE11_NRF9160NS in compliance
+config BOARD_CROXEL_KIOTE11_NRF9160NS
+	bool
+
+endmenu
