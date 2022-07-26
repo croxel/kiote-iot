@@ -1,4 +1,4 @@
-identifier: croxel_kiote11_nrf9160ns
+identifier: croxel_kiote11_nrf9160_ns
 name: Croxel-KIOTE/11-nRF9160-Non-Secure
 type: mcu
 arch: arm
