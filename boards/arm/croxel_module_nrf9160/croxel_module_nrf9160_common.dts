@@ -1,0 +1,185 @@
+/*
+ * Copyright (c) 2019 Nordic Semiconductor ASA
+ * Copyright (c) 2021 Croxel Inc
+ *
+ * SPDX-License-Identifier: LicenseRef-Nordic-5-Clause
+ */
+
+/** @TODO:
+ * - Add Audio Amplifier.
+ * - Define Expansion Headers.
+*/
+
+/ {
+	model = "Croxel Module nRF9160";
+	compatible = "croxel,module-nrf9160";
+
+	chosen {
+		zephyr,console = &uart0;
+		zephyr,shell-uart = &uart0;
+		zephyr,uart-mcumgr = &uart0;
+	};
+
+	expansion_port: connector {
+		compatible = "module-expansion-port";
+		#gpio-cells = <2>;
+		gpio-map-mask = <0xffffffff 0xffffffc0>;
+		gpio-map-pass-thru = <0 0x3f>;
+		gpio-map = /* 0: N/A */
+				/* 1: GND */
+				<2 0 &gpio0 9 0>,
+				<3 0 &gpio0 8 0>,
+				<4 0 &gpio0 7 0>,
+				/* 5: VLNA */
+				<6 0 &gpio0 6 0>,
+				<7 0 &gpio0 26 0>,
+				<8 0 &gpio0 27 0>,
+				<9 0 &gpio0 28 0>,
+				<10 0 &gpio0 29 0>,
+				<11 0 &gpio0 30 0>,
+				<12 0 &gpio0 31 0>,
+				<13 0 &gpio0 0 0>,
+				<14 0 &gpio0 1 0>,
+				<15 0 &gpio0 2 0>,
+				<16 0 &gpio0 15 0>,
+				<17 0 &gpio0 14 0>,
+				<18 0 &gpio0 13 0>,
+				/* 19: VDD */
+				/* 20: GND */
+				/* 21: GND */
+				/* 22: VDD */
+				/* 23: VDDIO */
+				<24 0 &gpio0 16 0>,
+				<25 0 &gpio0 17 0>,
+				<26 0 &gpio0 18 0>,
+				<27 0 &gpio0 19 0>,
+				/* 28: RST */
+				/* 29: SWDCLK */
+				/* 30: SWDIO */
+				<31 0 &gpio0 20 0>,
+				<32 0 &gpio0 22 0>,
+				<33 0 &gpio0 23 0>,
+				<34 0 &gpio0 24 0>,
+				<35 0 &gpio0 25 0>;
+				/* 36: SIM_RST */
+				/* 37: SIM_CLK */
+				/* 38: SIM_IO */
+				/* 39: SIM_1V8 */
+				/* 40: GND */
+	};
+};
+
+&adc {
+	status = "okay";
+};
+
+&gpiote {
+	status = "okay";
+};
+
+&gpio0 {
+	status = "okay";
+};
+
+/* PWM0 is intended for RGB LED control */
+&pwm0 {
+	// status = "okay";
+};
+
+/* PWM1 is intended for buzzer control */
+&pwm1 {
+	// status = "okay";
+};
+
+&pwm2 {
+	// status = "okay";
+};
+
+&pwm3 {
+	// status = "okay";
+};
+
+&i2c2 {
+	compatible = "nordic,nrf-twim";
+	// status = "okay";
+	clock-frequency = <I2C_BITRATE_FAST>;
+};
+
+&timer0 {
+	status = "okay";
+};
+
+&timer1 {
+	status = "okay";
+};
+
+&timer2 {
+	status = "okay";
+};
+
+&uart0 {
+	compatible = "nordic,nrf-uarte";
+	current-speed = <115200>;
+	// status = "okay";
+};
+
+&flash0 {
+	/*
+	 * For more information, see:
+	 * http://docs.zephyrproject.org/devices/dts/flash_partitions.html
+	 */
+	partitions {
+		compatible = "fixed-partitions";
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		boot_partition: partition@0 {
+			label = "mcuboot";
+			reg = <0x00000000 0x10000>;
+		};
+		slot0_partition: partition@10000 {
+			label = "image-0";
+		};
+		slot0_ns_partition: partition@40000 {
+			label = "image-0-nonsecure";
+		};
+		slot1_partition: partition@80000 {
+			label = "image-1";
+		};
+		slot1_ns_partition: partition@b0000 {
+			label = "image-1-nonsecure";
+		};
+		scratch_partition: partition@f0000 {
+			label = "image-scratch";
+			reg = <0x000f0000 0xa000>;
+		};
+		storage_partition: partition@fa000 {
+			label = "storage";
+			reg = <0x000fa000 0x00006000>;
+		};
+	};
+};
+
+/ {
+
+	reserved-memory {
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges;
+
+		sram0_s: image_s@20000000 {
+			/* Secure image memory */
+		};
+
+		sram0_bsd: image_bsd@20010000 {
+			/* BSD (shared) memory */
+		};
+
+		sram0_ns: image_ns@20020000 {
+			/* Non-Secure image memory */
+		};
+	};
+};
+
+/* Include partition configuration file */
+#include "croxel_module_nrf9160_partition_conf.dts"

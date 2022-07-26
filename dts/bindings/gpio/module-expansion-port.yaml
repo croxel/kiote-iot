@@ -1,0 +1,9 @@
+description: |
+    GPIO pins exposed through the expansion port of the nRF9160 module.
+    
+    These are provided through castellated pins which, when soldered on a
+    carrier board, enable various functionalities.
+
+compatible: "module-expansion-port"
+
+include: [gpio-nexus.yaml, base.yaml]

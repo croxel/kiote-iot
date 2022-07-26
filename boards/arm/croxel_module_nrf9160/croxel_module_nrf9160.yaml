@@ -1,0 +1,13 @@
+identifier: croxel_module_nrf9160
+name: Croxel-Module-NRF9160
+type: mcu
+arch: arm
+toolchain:
+  - gnuarmemb
+  - zephyr
+ram: 64
+flash: 256
+supported:
+  - i2c
+  - pwm
+  - watchdog  
