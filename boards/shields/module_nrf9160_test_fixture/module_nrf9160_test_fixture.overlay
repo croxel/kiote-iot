@@ -1,0 +1,34 @@
+/ {
+    leds {
+        compatible = "gpio-leds";
+        red_led: led_1 {
+            gpios = <&expansion_port 4 GPIO_ACTIVE_LOW>;
+            label = "RGB red channel";
+        };
+        green_led: led_2 {
+            gpios = <&expansion_port 3 GPIO_ACTIVE_LOW>;
+            label = "RGB green channel";
+        };
+        blue_led: led_3 {
+            gpios = <&expansion_port 2 GPIO_ACTIVE_LOW>;
+            label = "RGB bue channel";
+        };
+    };  
+
+    buttons {
+        compatible = "gpio-keys";
+        button0: button_0 {
+            gpios = <&expansion_port 25 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+            label = "Button 1";
+        };
+    };
+
+    /** @TODO: Add Piezo Beeper */
+
+    aliases {
+		sw0 = &button0;
+		led0 = &red_led;
+		led1 = &green_led;
+		led2 = &blue_led;
+    };
+};

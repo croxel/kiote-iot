@@ -1,0 +1,2 @@
+config SHIELD_MODULE_NRF9160_TEST_FIXTURE
+	def_bool $(shields_list_contains,module_nrf9160_test_fixture)
