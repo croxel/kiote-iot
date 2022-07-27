@@ -1,0 +1,2 @@
+config SHIELD_MODULE_NRF9160_HOST_DEMO
+	def_bool $(shields_list_contains,module_nrf9160_host_demo)
