@@ -39,7 +39,7 @@
     sda-pin = <23>;
     scl-pin = <24>;
 
-    bme280@76 {
+    tph: bme280@76 {
 		compatible = "bosch,bme280";
 		label = "BME280";
 		reg = <0x76>;
@@ -52,7 +52,7 @@
         int-gpios = <&expansion_port 35 GPIO_PULL_UP>;
     };
 
-	lis3dh@19 {
+	accelerometer: lis3dh@19 {
 		compatible = "st,lis2dh";
 		label = "LIS3DH";
 		reg = <0x19>;
