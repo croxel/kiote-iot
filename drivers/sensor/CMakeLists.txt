@@ -1,0 +1,1 @@
+add_subdirectory_ifdef(CONFIG_MC34X9 mc34x9)

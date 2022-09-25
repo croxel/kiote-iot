@@ -1,0 +1,4 @@
+menuconfig MC34X9
+    bool "MC34X9 3-Axis accelerometer driver"
+    help
+      Enable support for MC34X9 accelerometer driver
