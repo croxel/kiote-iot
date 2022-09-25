@@ -1,4 +1,5 @@
 build:
+  cmake: .
   kconfig: Kconfig.kiote-iot
   settings:
     board_root: .

@@ -5,4 +5,6 @@ menu "Croxel KIOTE IoT"
 config BOARD_CROXEL_KIOTE11_NRF9160_NS
 	bool
 
+rsource "drivers/Kconfig"
+
 endmenu
