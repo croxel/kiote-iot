@@ -32,14 +32,11 @@ manifest:
   # "projects" is a list of git repositories which make up the NCS
   # source code.
   projects:
-    - name: zephyr
-      repo-path: zephyr
-      revision: ncs_v1.7.1_dps310_fix
-      remote: ubieda
     - name: nrf
       repo-path: sdk-nrf
-      revision: v1.7.1
+      revision: ncs_v1.7.1_dps310_fix
       path: nrf
+      remote: ubieda
       import: true
 
   # West-related configuration for the nrf repository.
