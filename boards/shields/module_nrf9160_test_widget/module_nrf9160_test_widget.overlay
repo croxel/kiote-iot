@@ -1,0 +1,56 @@
+/ {
+    leds {
+        compatible = "gpio-leds";
+        red_led: led_1 {
+            gpios = <&expansion_port 4 GPIO_ACTIVE_LOW>;
+            label = "RGB red channel";
+        };
+        green_led: led_2 {
+            gpios = <&expansion_port 3 GPIO_ACTIVE_LOW>;
+            label = "RGB green channel";
+        };
+        blue_led: led_3 {
+            gpios = <&expansion_port 2 GPIO_ACTIVE_LOW>;
+            label = "RGB bue channel";
+        };
+    };
+
+    buttons {
+        compatible = "gpio-keys";
+        button0: button_0 {
+            gpios = <&expansion_port 25 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+            label = "Button 1";
+        };
+    };
+
+    /** @TODO: Add Piezo Beeper */
+    /** @TODO: Add Serial Flash */
+    
+    aliases {
+		sw0 = &button0;
+		led0 = &blue_led;
+		led1 = &green_led;
+		led2 = &blue_led;
+    };
+};
+
+&arduino_i2c {
+    compatible = "nordic,nrf-twim";
+    status = "okay";
+    sda-pin = <23>;
+    scl-pin = <24>;
+
+    tph: DPS310@76 {
+		compatible = "infineon,dps310";
+		label = "DPS310";
+		reg = <0x76>;
+	};
+
+    /** @FIXME: Add LTR329 */
+
+	accelerometer: mc34x9@4c {
+		compatible = "memsic,mc34x9";
+		label = "MC34X9";
+		reg = <0x4c>;
+	};
+};
