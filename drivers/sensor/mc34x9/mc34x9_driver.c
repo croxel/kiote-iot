@@ -4,29 +4,17 @@
  * Ported from: https://github.com/mcubemems/mCube_mc34x9_arduino_driver
  */
 
-#include <drivers/sensor.h>
-#include <init.h>
-#include <drivers/gpio.h>
-#include <drivers/i2c.h>
-#include <logging/log.h>
+#include <zephyr/drivers/sensor.h>
+#include <zephyr/init.h>
+#include <zephyr/drivers/gpio.h>
+#include <zephyr/drivers/i2c.h>
+#include <zephyr/logging/log.h>
 #include <mc34x9.h>
 
 LOG_MODULE_REGISTER(MC34X9, CONFIG_SENSOR_LOG_LEVEL);
 
-/** @FIXME: Added to make it compatible with NCS v1.7.1
- * Remove when updating NCS version.
-*/
-struct i2c_dt_spec {
-    const struct device *bus;
-    uint16_t addr;
-};
-
-
 struct mc34x9_config {
-    struct {
-        const char *name;        
-        uint16_t addr;
-    } bus;
+    struct i2c_dt_spec bus;
 };
 
 struct mc34x9_data {
@@ -52,62 +40,28 @@ static struct mc34x9_data mc34x9_data;
 #define MC34X9_CFG_DECIMATION_DEFAULT           MC34X9_DECIMATION_X200
 #define MC34X9_CFG_RANGE_DEFAULT                MC34X9_RANGE_2G
 
-/** @FIXME: Added to make it compatible with NCS v1.7.1
- * Remove when updating NCS version.
-*/
-static inline int i2c_reg_write_byte_dt(const struct i2c_dt_spec *spec,
-					uint8_t reg_addr, uint8_t value)
-{
-	return i2c_reg_write_byte(spec->bus, spec->addr, reg_addr, value);
-}
-
-/** @FIXME: Added to make it compatible with NCS v1.7.1
- * Remove when updating NCS version.
-*/
-static inline int i2c_burst_write_dt(const struct i2c_dt_spec *spec,
-				     uint8_t start_addr,
-				     const uint8_t *buf,
-				     uint32_t num_bytes)
-{
-	return i2c_burst_write(spec->bus, spec->addr,
-			       start_addr, buf, num_bytes);
-}
-
-/** @FIXME: Added to make it compatible with NCS v1.7.1
- * Remove when updating NCS version.
-*/
-static inline int i2c_burst_read_dt(const struct i2c_dt_spec *spec,
-				     uint8_t start_addr,
-				     uint8_t *buf,
-				     uint32_t num_bytes)
-{
-	return i2c_burst_read(spec->bus, spec->addr,
-			       start_addr, buf, num_bytes);
-}
-
-
 static inline int mc34x9_set_reg(const struct device *dev,
                   uint8_t register_address, uint8_t value)
 {
-    const struct mc34x9_data *data = dev->data;
+    const struct mc34x9_config *config = dev->config;
 
-    return i2c_reg_write_byte_dt(&data->bus, register_address, value);
+    return i2c_reg_write_byte_dt(&config->bus, register_address, value);
 }
 
 static inline int mc34x9_set_data(const struct device *dev, uint8_t *value, 
 				  uint8_t register_address, uint8_t count)
 {
-    const struct mc34x9_data *data = dev->data;
+    const struct mc34x9_config *config = dev->config;
 
-    return i2c_burst_write_dt(&data->bus, register_address, value, count);
+    return i2c_burst_write_dt(&config->bus, register_address, value, count);
 }
 
 static inline int mc34x9_get_data(const struct device *dev, uint8_t *read_buf,
 				  uint8_t register_address, uint8_t count)
 {
-    const struct mc34x9_data *data = dev->data;
+    const struct mc34x9_config *config = dev->config;
 
-    return i2c_burst_read_dt(&data->bus, register_address, read_buf, count);
+    return i2c_burst_read_dt(&config->bus, register_address, read_buf, count);
 }
 
 static int set_mode(const struct device *dev, MC34X9_mode_t mode)
@@ -303,12 +257,10 @@ static int mc34x9_init(const struct device *dev)
 
     int err = -1;
 
-    data->bus.bus = device_get_binding(config->bus.name);
-    if (!data->bus.bus) {
+    if (!device_is_ready(config->bus.bus)) {
         LOG_ERR("Bus is not ready");
         return -EIO;
     }
-    data->bus.addr = DT_INST_REG_ADDR(0);
 
     /* Confirm device is expected */
     uint8_t chip_id = 0xFF;
@@ -384,10 +336,7 @@ static int mc34x9_init(const struct device *dev)
 }
 
 static const struct mc34x9_config mc34x9_config = {
-    .bus = {
-        .addr = DT_INST_REG_ADDR(0),
-        .name = DT_INST_BUS_LABEL(0),
-    },
+    .bus = I2C_DT_SPEC_INST_GET(0),
 };
 
 DEVICE_DT_INST_DEFINE(0, mc34x9_init, NULL,

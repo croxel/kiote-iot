@@ -1,5 +1,5 @@
-#include <zephyr.h>
-#include <drivers/sensor.h>
+#include <zephyr/kernel.h>
+#include <zephyr/drivers/sensor.h>
 #include <stdio.h>
 
 BUILD_ASSERT((DT_HAS_COMPAT_STATUS_OKAY(memsic_mc34x9) == 1), "unable to find ocu3_can_bus in device tree");

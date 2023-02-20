@@ -4,6 +4,5 @@
     mc34x9@4c {
         compatible = "memsic,mc34x9";
         reg = <0x4c>;
-        label = "MC34X9";
     };
 };

@@ -1,0 +1,7 @@
+description: |
+    The MC34X9 is a 3-Axis Accelerometer. See more info at:
+    https://www.memsic.com/capacitive-accelerometer-26
+
+compatible: "memsic,mc34x9"
+
+include: i2c-device.yaml
