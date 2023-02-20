@@ -3,15 +3,12 @@
         compatible = "gpio-leds";
         red_led: led_1 {
             gpios = <&expansion_port 4 GPIO_ACTIVE_LOW>;
-            label = "RGB red channel";
         };
         green_led: led_2 {
             gpios = <&expansion_port 3 GPIO_ACTIVE_LOW>;
-            label = "RGB green channel";
         };
         blue_led: led_3 {
             gpios = <&expansion_port 2 GPIO_ACTIVE_LOW>;
-            label = "RGB bue channel";
         };
     };  
 
@@ -19,7 +16,13 @@
         compatible = "gpio-keys";
         button0: button_0 {
             gpios = <&expansion_port 25 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-            label = "Button 1";
+        };
+    };
+
+    idle_gpios {
+        compatible = "gpio-leds";
+        nand_cs: nand_cs {
+            gpios = <&expansion_port  9 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
         };
     };
 

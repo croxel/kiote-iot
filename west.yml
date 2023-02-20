@@ -21,8 +21,6 @@ manifest:
     # nRF Connect SDK GitHub organization.
     - name: ncs
       url-base: https://github.com/nrfconnect
-    - name: ubieda
-      url-base: https://github.com/ubieda
 
   # If not otherwise specified, the projects below should be obtained
   # from the ncs remote.
@@ -34,9 +32,8 @@ manifest:
   projects:
     - name: nrf
       repo-path: sdk-nrf
-      revision: ncs_v1.7.1_dps310_fix
+      revision: v2.2.0
       path: nrf
-      remote: ubieda
       import: true
 
   # West-related configuration for the nrf repository.

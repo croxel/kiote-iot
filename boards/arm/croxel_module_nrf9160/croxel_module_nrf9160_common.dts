@@ -10,6 +10,8 @@
  * - Define Expansion Headers.
 */
 
+#include "croxel_module_nrf9160_common-pinctrl.dtsi"
+
 / {
 	model = "Croxel Module nRF9160";
 	compatible = "croxel,module-nrf9160";
@@ -103,6 +105,9 @@ arduino_i2c: &i2c2 {
 	compatible = "nordic,nrf-twim";
 	// status = "okay";
 	clock-frequency = <I2C_BITRATE_FAST>;
+    pinctrl-0 = <&i2c2_default>;
+    pinctrl-1 = <&i2c2_sleep>;
+    pinctrl-names = "default", "sleep";
 };
 
 &timer0 {
