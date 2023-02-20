@@ -1,8 +1,8 @@
-#include <zephyr.h>
-#include <device.h>
-#include <drivers/i2c.h>
+#include <zephyr/kernel.h>
+#include <zephyr/device.h>
+#include <zephyr/drivers/i2c.h>
 
-const struct device *i2c_dev;
+const struct device *i2c_dev = DEVICE_DT_GET(DT_NODELABEL(arduino_i2c));
 
 void i2c_scan_devices(void)
 {
@@ -19,7 +19,6 @@ void i2c_scan_devices(void)
 
 void main(void)
 {
-    i2c_dev = device_get_binding(DT_LABEL(DT_NODELABEL(arduino_i2c)));
     if (!i2c_dev) {
         printk("Could not find i2c_dev\n");
         return;
