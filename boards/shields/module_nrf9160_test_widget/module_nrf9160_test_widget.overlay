@@ -62,7 +62,7 @@
 	mosi-pin = < 27 >;
 	miso-pin = < 29 >;
 	cs-gpios = < &gpio0 28 GPIO_ACTIVE_LOW >;
-	w25q32jv: w25q32jv@0 {
+	mq_backend_flash: w25q32jv: w25q32jv@0 {
 		compatible = "jedec,spi-nor";
 		label = "W25Q32JV";
 		reg = < 0 >;
@@ -71,8 +71,8 @@
 		hold-gpios = < &gpio0 6 GPIO_ACTIVE_LOW >;
 		size = < 0x2000000 >;
 		has-dpd;
-		t-enter-dpd = < 3000 >;
-		t-exit-dpd = < 30000 >;
+		t-enter-dpd = < 10000 >;
+		t-exit-dpd = < 35000 >;
 		jedec-id = [ ef 40 16  ];
 	};
 };
